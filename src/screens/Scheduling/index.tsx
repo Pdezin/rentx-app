@@ -1,12 +1,15 @@
 import React from "react";
 import { StatusBar } from "react-native";
 import { useTheme } from "styled-components";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { BackButton } from "../../components/BackButton";
 import { Button } from "../../components/Button";
 import { Calendar } from "../../components/Calendar";
 
 import ArrowSvg from "../../assets/arrow.svg";
+import { RootStackParamList } from "../../routes/stack.routes";
 
 import {
   Container,
@@ -21,8 +24,15 @@ import {
   ButtonWrapper,
 } from "./styles";
 
+type SchedulingScreenProp = NativeStackNavigationProp<RootStackParamList>;
+
 export function Scheduling() {
   const theme = useTheme();
+  const navigation = useNavigation<SchedulingScreenProp>();
+
+  function handleConfirmRental() {
+    navigation.navigate("SchedulingDetails");
+  }
 
   return (
     <Container>
@@ -62,7 +72,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );

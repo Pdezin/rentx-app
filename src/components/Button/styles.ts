@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 import theme from "../../styles/theme";
 
 interface ButtonProps extends PropsWithChildren<RectButtonProps> {
-  color?: string;
+  color: string;
 }
 
 export const Container = styled(RectButton)<ButtonProps>`
@@ -13,7 +13,7 @@ export const Container = styled(RectButton)<ButtonProps>`
   padding: 19px;
   align-items: center;
   justify-content: center;
-  background-color: ${({ color }) => (color ? color : theme.colors.main)};
+  background-color: ${({ color }) => color};
 `;
 
 export const Title = styled.Text`

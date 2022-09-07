@@ -1,4 +1,11 @@
 import React from "react";
+import { Feather } from "@expo/vector-icons";
+import { RFValue } from "react-native-responsive-fontsize";
+import { useTheme } from "styled-components";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+import { RootStackParamList } from "../../routes/stack.routes";
 
 import { Accessory } from "../../components/Accessory";
 import { BackButton } from "../../components/BackButton";
@@ -24,12 +31,31 @@ import {
   Rent,
   Period,
   Price,
-  About,
   Accessories,
   Footer,
+  CalendarIcon,
+  DateInfo,
+  RentalPeriod,
+  DateTitle,
+  DateValue,
+  RentalPrice,
+  RentalPriceLabel,
+  RentalPriceDetails,
+  RentalPriceQuota,
+  RentalPriceTotal,
 } from "./styles";
 
+type SchedulingDetailsScreenProp =
+  NativeStackNavigationProp<RootStackParamList>;
+
 export function SchedulingDetails() {
+  const theme = useTheme();
+  const navigation = useNavigation<SchedulingDetailsScreenProp>();
+
+  function handleConfirmRental() {
+    navigation.navigate("SchedulingComplete");
+  }
+
   return (
     <Container>
       <Header>
@@ -38,9 +64,7 @@ export function SchedulingDetails() {
 
       <CarImages>
         <ImageSlider
-          imagesUrl={[
-            "https://pensecarros.com.br/cms/uploads/audi-rs5-2-9-v6-tfsi-gasolina-sportback-quattro-s-tronic-6130309e27d5e.png",
-          ]}
+          imagesUrl={["https://www.pngmart.com/files/1/Audi-RS5-Red-PNG.png"]}
         />
       </CarImages>
 
@@ -65,16 +89,45 @@ export function SchedulingDetails() {
           <Accessory name="2 pessoas" icon={peopleSvg} />
         </Accessories>
 
-        <About>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae
-          ab modi itaque ratione deserunt dolor iste at, dignissimos sunt, quam
-          voluptatibus doloribus, doloremque recusandae laborum omnis quod iure
-          ex aut.
-        </About>
+        <RentalPeriod>
+          <CalendarIcon>
+            <Feather
+              name="calendar"
+              size={RFValue(24)}
+              color={theme.colors.shape}
+            />
+          </CalendarIcon>
+
+          <DateInfo>
+            <DateTitle>DE</DateTitle>
+            <DateValue>18/06/2022</DateValue>
+          </DateInfo>
+          <Feather
+            name="chevron-right"
+            size={RFValue(10)}
+            color={theme.colors.text}
+          />
+          <DateInfo>
+            <DateTitle>ATÉ</DateTitle>
+            <DateValue>18/06/2022</DateValue>
+          </DateInfo>
+        </RentalPeriod>
+
+        <RentalPrice>
+          <RentalPriceLabel>TOTAL</RentalPriceLabel>
+          <RentalPriceDetails>
+            <RentalPriceQuota>R$ 580 x 3 diárias</RentalPriceQuota>
+            <RentalPriceTotal>R$ 2.900,00</RentalPriceTotal>
+          </RentalPriceDetails>
+        </RentalPrice>
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button
+          title="Alugar agora"
+          color={theme.colors.success}
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );

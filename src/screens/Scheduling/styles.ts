@@ -1,12 +1,13 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import styled, { css } from "styled-components/native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 interface DateValueProps {
   selected: boolean;
 }
 
-export const Container = styled.View`
+export const Container = styled(GestureHandlerRootView)`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background_secondary};
 `;
