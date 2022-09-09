@@ -21,19 +21,8 @@ export function Home() {
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation<HomeScreenProp>();
 
-  const carData = {
-    brand: "AUDI",
-    name: "RS 5 Coupé",
-    rent: {
-      period: "AO DIA",
-      price: 120,
-    },
-    thumbnail:
-      "https://pensecarros.com.br/cms/uploads/audi-rs5-2-9-v6-tfsi-gasolina-sportback-quattro-s-tronic-6130309e27d5e.png",
-  };
-
-  function handleCarDetails() {
-    navigation.navigate("CarDetails");
+  function handleCarDetails(car: CarDTO) {
+    navigation.navigate("CarDetails", { car });
   }
 
   useEffect(() => {
@@ -57,7 +46,7 @@ export function Home() {
       <Header>
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          <TotalCars>Total de 12 carros</TotalCars>
+          <TotalCars>Total de {cars.length} carros</TotalCars>
         </HeaderContent>
       </Header>
       {loading ? (
@@ -67,7 +56,7 @@ export function Home() {
           data={cars}
           keyExtractor={(item) => String(item)}
           renderItem={({ item }) => (
-            <Car data={item} onPress={handleCarDetails} />
+            <Car data={item} onPress={() => handleCarDetails(item)} />
           )}
         />
       )}
