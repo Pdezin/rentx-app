@@ -3,6 +3,8 @@ import { StatusBar } from "expo-status-bar";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "styled-components";
 
 import Logo from "../../assets/logo.svg";
 import { Car } from "../../components/Car";
@@ -12,7 +14,14 @@ import { api } from "../../services/api";
 import { CarDTO } from "../../dtos/CarDTO";
 import { RootStackParamList } from "../../routes/stack.routes";
 
-import { Container, Header, TotalCars, HeaderContent, CarList } from "./styles";
+import {
+  Container,
+  Header,
+  TotalCars,
+  HeaderContent,
+  CarList,
+  MyCarsButton,
+} from "./styles";
 
 type HomeScreenProp = NativeStackNavigationProp<RootStackParamList, "Home">;
 
@@ -20,9 +29,14 @@ export function Home() {
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation<HomeScreenProp>();
+  const theme = useTheme();
 
   function handleCarDetails(car: CarDTO) {
     navigation.navigate("CarDetails", { car });
+  }
+
+  function handleOpenMyCars() {
+    navigation.navigate("MyCars");
   }
 
   useEffect(() => {
@@ -60,6 +74,9 @@ export function Home() {
           )}
         />
       )}
+      <MyCarsButton onPress={handleOpenMyCars}>
+        <Ionicons name="ios-car-sport" size={38} color={theme.colors.shape} />
+      </MyCarsButton>
     </Container>
   );
 }
