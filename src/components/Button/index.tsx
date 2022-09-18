@@ -9,6 +9,7 @@ interface Props {
   onPress: () => void;
   enabled?: boolean;
   loading?: boolean;
+  light?: boolean;
 }
 
 export function Button({
@@ -17,22 +18,23 @@ export function Button({
   onPress,
   enabled = true,
   loading = false,
-  ...rest
+  light = false,
 }: Props) {
   const theme = useTheme();
 
   return (
     <Container
-      {...rest}
       onPress={onPress}
       color={color ? color : theme.colors.main}
       enabled={enabled && !loading}
       style={{ opacity: !enabled || loading ? 0.5 : 1 }}
     >
       {loading ? (
-        <ActivityIndicator color={theme.colors.shape} />
+        <ActivityIndicator
+          color={light ? theme.colors.header : theme.colors.shape}
+        />
       ) : (
-        <Title>{title}</Title>
+        <Title light={light}>{title}</Title>
       )}
     </Container>
   );
