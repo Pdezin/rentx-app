@@ -12,7 +12,7 @@ import Animated, {
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { useTheme } from "styled-components";
 
-import { RootStackParamList } from "../../routes/stack.routes";
+import { RootStackParamList } from "../../routes/app.stack.routes";
 import { CarDTO } from "../../dtos/CarDTO";
 
 import { Accessory } from "../../components/Accessory";
@@ -132,8 +132,8 @@ export function CarDetails() {
             <Name>{car.name}</Name>
           </Description>
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
 
@@ -148,8 +148,6 @@ export function CarDetails() {
         </Accessories>
 
         <About>
-          {car.about}
-          {car.about}
           {car.about}
           {car.about}
           {car.about}

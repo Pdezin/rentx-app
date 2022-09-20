@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import AppLoading from "expo-app-loading";
 import { ThemeProvider } from "styled-components";
 import * as SplashScreen from "expo-splash-screen";
 
@@ -17,6 +16,7 @@ import {
 
 import { Routes } from "./src/routes";
 import theme from "./src/styles/theme";
+import { AppProvider } from "./src/hooks";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -43,7 +43,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
     </ThemeProvider>
   );
 }

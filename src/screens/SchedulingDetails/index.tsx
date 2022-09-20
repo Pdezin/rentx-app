@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import { Alert } from "react-native";
 
 import { api } from "../../services/api";
-import { RootStackParamList } from "../../routes/stack.routes";
+import { RootStackParamList } from "../../routes/app.stack.routes";
 import { CarDTO } from "../../dtos/CarDTO";
 
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
@@ -73,7 +73,7 @@ export function SchedulingDetails() {
   );
   const { car, dates } = route.params as Params;
 
-  const rentalTotal = Number(dates.length * car.rent.price);
+  const rentalTotal = Number(dates.length * car.price);
 
   async function handleConfirmRental() {
     try {
@@ -103,7 +103,7 @@ export function SchedulingDetails() {
           title: "Carro alugado!",
           message:
             "Agora você só precisa ir\naté a concessionária da RENTX\npegar o seu automóvel.",
-          nextScreenRoute: "Home",
+          nextScreenRoute: "Cars",
         },
       });
     } catch (err) {
@@ -144,8 +144,8 @@ export function SchedulingDetails() {
             <Name>{car.name}</Name>
           </Description>
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
 
@@ -187,7 +187,7 @@ export function SchedulingDetails() {
           <RentalPriceLabel>TOTAL</RentalPriceLabel>
           <RentalPriceDetails>
             <RentalPriceQuota>
-              R$ {car.rent.price} x{dates.length} diárias
+              R$ {car.price} x{dates.length} diárias
             </RentalPriceQuota>
             <RentalPriceTotal>R$ {rentalTotal}</RentalPriceTotal>
           </RentalPriceDetails>

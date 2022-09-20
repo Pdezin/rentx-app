@@ -18,7 +18,7 @@ import {
 } from "../../components/Calendar";
 
 import ArrowSvg from "../../assets/arrow.svg";
-import { RootStackParamList } from "../../routes/stack.routes";
+import { RootStackParamList } from "../../routes/app.stack.routes";
 
 import {
   Container,

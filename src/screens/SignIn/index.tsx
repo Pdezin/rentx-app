@@ -11,7 +11,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components";
 import * as Yup from "yup";
 
-import { RootStackParamList } from "../../routes/stack.routes";
+import { RootAuthStackParamList } from "../../routes/auth.routes";
+import { useAuth } from "../../hooks/auth";
 
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
@@ -19,11 +20,16 @@ import { InputPassword } from "../../components/InputPassword";
 
 import { Container, Header, SubTitle, Form, Title, Footer } from "./styles";
 
-type SignInScreenProp = NativeStackNavigationProp<RootStackParamList, "SignIn">;
+type SignInScreenProp = NativeStackNavigationProp<
+  RootAuthStackParamList,
+  "SignIn"
+>;
 
 export function SignIn() {
   const theme = useTheme();
+  const { signIn } = useAuth();
   const navigation = useNavigation<SignInScreenProp>();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -37,14 +43,11 @@ export function SignIn() {
       });
 
       await schema.validate({ email, password });
+
+      signIn({ email, password });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         Alert.alert("Atenção", error.message);
-      } else {
-        Alert.alert(
-          "Ops!",
-          "Ocorreu um erro ao fazer login, verifique suas credenciais"
-        );
       }
     }
   }

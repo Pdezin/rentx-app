@@ -6,7 +6,7 @@ import { useTheme } from "styled-components";
 import { BackButton } from "../../components/BackButton";
 import { Car } from "../../components/Car";
 import { CarDTO } from "../../dtos/CarDTO";
-import { RootStackParamList } from "../../routes/stack.routes";
+import { RootStackParamList } from "../../routes/app.stack.routes";
 import { api } from "../../services/api";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -36,10 +36,8 @@ interface CarProps {
   endDate: string;
 }
 
-type MyCarsScreenProp = NativeStackNavigationProp<RootStackParamList, "MyCars">;
-
 export function MyCars() {
-  const navigation = useNavigation<MyCarsScreenProp>();
+  const navigation = useNavigation();
   const theme = useTheme();
 
   const [cars, setCars] = useState<CarProps[]>([]);

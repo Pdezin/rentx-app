@@ -11,14 +11,17 @@ import Animated, {
   runOnJS,
 } from "react-native-reanimated";
 
-import { RootStackParamList } from "../../routes/stack.routes";
+import { RootAuthStackParamList } from "../../routes/auth.routes";
 
 import BrandSvg from "../../assets/brand.svg";
 import LogoSvg from "../../assets/logo.svg";
 
 import { Container } from "./styles";
 
-type SplashScreenProp = NativeStackNavigationProp<RootStackParamList, "Splash">;
+type SplashScreenProp = NativeStackNavigationProp<
+  RootAuthStackParamList,
+  "Splash"
+>;
 
 export function Splash() {
   const navigation = useNavigation<SplashScreenProp>();
@@ -76,7 +79,7 @@ export function Splash() {
   });
 
   function startApp() {
-    navigation.navigate("Home");
+    navigation.navigate("SignIn");
   }
 
   return (

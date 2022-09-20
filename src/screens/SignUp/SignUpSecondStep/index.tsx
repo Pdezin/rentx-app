@@ -10,7 +10,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components";
 
-import { RootStackParamList } from "../../../routes/stack.routes";
+import { api } from "../../../services/api";
+import { RootAuthStackParamList } from "../../../routes/auth.routes";
 import { SignUpDTO } from "../../../dtos/SignUpDTO";
 
 import { BackButton } from "../../../components/BackButton";
@@ -30,7 +31,7 @@ import {
 } from "./styles";
 
 type SignUpSecondStepScreenProp = NativeStackNavigationProp<
-  RootStackParamList,
+  RootAuthStackParamList,
   "SignUpSecondStep"
 >;
 
@@ -53,7 +54,7 @@ export function SignUpSecondStep() {
     navigation.goBack();
   }
 
-  function handleRegister() {
+  async function handleRegister() {
     if (!password || !passwordConfirm) {
       return Alert.alert("Atenção", "Informe a senha e a confirmação");
     }
@@ -65,13 +66,25 @@ export function SignUpSecondStep() {
       );
     }
 
-    navigation.navigate("Confirmation", {
-      data: {
-        title: "Conta criada!",
-        message: "Agora é só fazer login\ne aproveitar",
-        nextScreenRoute: "SignIn",
-      },
-    });
+    await api
+      .post("/users", {
+        name: user.name,
+        email: user.email,
+        driver_license: user.driverLicense,
+        password,
+      })
+      .then(() => {
+        navigation.navigate("Confirmation", {
+          data: {
+            title: "Conta criada!",
+            message: "Agora é só fazer login\ne aproveitar",
+            nextScreenRoute: "SignIn",
+          },
+        });
+      })
+      .catch((error) => {
+        Alert.alert("Atenção", "Não foi possível cadastrar. Erro: " + error);
+      });
   }
 
   useEffect(() => {

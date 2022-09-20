@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import * as Yup from "yup";
 
-import { RootStackParamList } from "../../../routes/stack.routes";
+import { RootAuthStackParamList } from "../../../routes/auth.routes";
 
 import { BackButton } from "../../../components/BackButton";
 import { Bullet } from "../../../components/Bullet";
@@ -28,7 +28,7 @@ import {
 } from "./styles";
 
 type SignUpFirstStepScreenProp = NativeStackNavigationProp<
-  RootStackParamList,
+  RootAuthStackParamList,
   "SignUpFirstStep"
 >;
 
