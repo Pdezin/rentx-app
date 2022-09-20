@@ -33,7 +33,10 @@ import {
   ButtonWrapper,
 } from "./styles";
 
-type SchedulingScreenProp = NativeStackNavigationProp<RootStackParamList>;
+type SchedulingScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Scheduling"
+>;
 
 interface Params {
   car: CarDTO;

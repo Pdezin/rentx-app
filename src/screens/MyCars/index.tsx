@@ -36,7 +36,7 @@ interface CarProps {
   endDate: string;
 }
 
-type MyCarsScreenProp = NativeStackNavigationProp<RootStackParamList>;
+type MyCarsScreenProp = NativeStackNavigationProp<RootStackParamList, "MyCars">;
 
 export function MyCars() {
   const navigation = useNavigation<MyCarsScreenProp>();

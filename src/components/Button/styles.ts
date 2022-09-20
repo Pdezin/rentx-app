@@ -1,10 +1,11 @@
-import { PropsWithChildren } from "react";
-import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+import { ReactNode } from "react";
+import { RectButton } from "react-native-gesture-handler";
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
-interface ButtonProps extends PropsWithChildren<RectButtonProps> {
+interface ButtonProps {
   color: string;
+  children: ReactNode;
 }
 
 interface ButtonTextProps {

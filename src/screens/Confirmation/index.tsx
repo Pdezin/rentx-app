@@ -1,26 +1,36 @@
 import React from "react";
 import { StatusBar, useWindowDimensions } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "../../routes/stack.routes";
-
-import { ConfirmButton } from "../../components/ConfirmButton";
+import { ConfirmationDTO } from "../../dtos/ConfirmationDTO";
 
 import LogoSvg from "../../assets/logo_background_gray.svg";
 import DoneSvg from "../../assets/done.svg";
 
+import { ConfirmButton } from "../../components/ConfirmButton";
+
 import { Container, Content, Title, Message, Footer } from "./styles";
 
-type SchedulingCompleteScreenProp =
-  NativeStackNavigationProp<RootStackParamList>;
+type SchedulingCompleteScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Confirmation"
+>;
 
-export function SchedulingComplete() {
+interface Params {
+  data: ConfirmationDTO;
+}
+
+export function Confirmation() {
   const { width } = useWindowDimensions();
   const navigation = useNavigation<SchedulingCompleteScreenProp>();
 
+  const route = useRoute();
+  const { data } = route.params as Params;
+
   function handleConfirm() {
-    navigation.navigate("Home");
+    navigation.navigate(data.nextScreenRoute as any);
   }
 
   return (
@@ -35,13 +45,9 @@ export function SchedulingComplete() {
 
       <Content>
         <DoneSvg width={80} height={80} />
-        <Title>Carro alugado!</Title>
+        <Title>{data.title}</Title>
 
-        <Message>
-          Agora você só precisa ir {"\n"}
-          até a concessionária da RENTX {"\n"}
-          pegar o seu automóvel.
-        </Message>
+        <Message>{data.message}</Message>
       </Content>
 
       <Footer>

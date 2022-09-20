@@ -55,8 +55,10 @@ interface RentalPeriod {
   endFormatted: string;
 }
 
-type SchedulingDetailsScreenProp =
-  NativeStackNavigationProp<RootStackParamList>;
+type SchedulingDetailsScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "SchedulingDetails"
+>;
 
 export function SchedulingDetails() {
   const theme = useTheme();
@@ -96,7 +98,14 @@ export function SchedulingDetails() {
         unavailable_dates,
       });
 
-      navigation.navigate("SchedulingComplete");
+      navigation.navigate("Confirmation", {
+        data: {
+          title: "Carro alugado!",
+          message:
+            "Agora você só precisa ir\naté a concessionária da RENTX\npegar o seu automóvel.",
+          nextScreenRoute: "Home",
+        },
+      });
     } catch (err) {
       Alert.alert("Não foi possível confirmar o agendamento.");
     } finally {

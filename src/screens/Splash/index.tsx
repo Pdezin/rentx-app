@@ -18,7 +18,7 @@ import LogoSvg from "../../assets/logo.svg";
 
 import { Container } from "./styles";
 
-type SplashScreenProp = NativeStackNavigationProp<RootStackParamList>;
+type SplashScreenProp = NativeStackNavigationProp<RootStackParamList, "Splash">;
 
 export function Splash() {
   const navigation = useNavigation<SplashScreenProp>();
