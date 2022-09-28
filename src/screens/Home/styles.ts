@@ -1,16 +1,10 @@
 import { PropsWithChildren } from "react";
 import { FlatList } from "react-native";
-import {
-  GestureHandlerRootView,
-  RectButton,
-  RectButtonProps,
-} from "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 import { CarDTO } from "../../dtos/CarDTO";
-
-interface ButtonProps extends PropsWithChildren<RectButtonProps> {}
 
 export const Container = styled(GestureHandlerRootView)`
   flex: 1;
