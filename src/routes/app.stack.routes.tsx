@@ -1,6 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { CarDTO } from "../dtos/CarDTO";
+import { Car as ModelCar } from "../database/models/Car";
 import { ConfirmationDTO } from "../dtos/ConfirmationDTO";
 
 import { Home } from "../screens/Home";
@@ -12,7 +13,7 @@ import { Confirmation } from "../screens/Confirmation";
 export type RootStackParamList = {
   Cars: undefined;
   CarDetails: {
-    car: CarDTO;
+    car: ModelCar;
   };
   Scheduling: {
     car: CarDTO;

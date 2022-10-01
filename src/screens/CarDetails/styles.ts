@@ -71,6 +71,7 @@ export const About = styled.Text`
   text-align: justify;
   line-height: ${RFValue(25)}px;
   width: 100%;
+  margin-top: ${RFValue(15)}px;
 `;
 
 export const Accessories = styled.View`
@@ -80,6 +81,13 @@ export const Accessories = styled.View`
   align-items: center;
   justify-content: space-between;
   margin: 16px 0;
+`;
+
+export const OfflineInfo = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary_400};
+  color: ${({ theme }) => theme.colors.main};
+  font-size: ${RFValue(12)}px;
+  text-align: center;
 `;
 
 export const Footer = styled.View`

@@ -22,7 +22,7 @@ export const Container = styled(GestureHandlerRootView)`
 
 export const Header = styled.View`
   width: 100%;
-  height: ${RFValue(227)}px;
+  height: ${RFValue(197)}px;
   background-color: ${({ theme }) => theme.colors.header};
 
   padding: 0 ${RFValue(24)}px;
@@ -35,13 +35,17 @@ export const HeaderTop = styled.View`
   justify-content: space-between;
   align-items: center;
 
-  margin-top: ${getStatusBarHeight() + RFValue(32)}px;
+  margin-top: ${getStatusBarHeight() + RFValue(12)}px;
 `;
 
 export const HeaderTitle = styled.Text`
   font-size: ${RFValue(25)}px;
   font-family: ${({ theme }) => theme.fonts.secondary_600};
   color: ${({ theme }) => theme.colors.background_secondary};
+`;
+
+export const BackButtonWrapper = styled.View`
+  height: ${RFValue(25)}px;
 `;
 
 export const LogoutButton = styled(BorderlessButton)<
@@ -54,7 +58,7 @@ export const PhotoContainer = styled.View`
   border-radius: ${RFValue(90)}px;
 
   background-color: ${({ theme }) => theme.colors.shape};
-  margin-top: ${RFValue(40)}px;
+  margin-top: ${RFValue(30)}px;
 `;
 
 export const Photo = styled.Image`
@@ -80,7 +84,7 @@ export const PhotoButton = styled(RectButton)<
 export const Content = styled.View`
   flex: 1;
   padding: ${RFValue(24)}px;
-  margin-top: ${RFValue(105)}px;
+  margin-top: ${RFValue(90)}px;
 `;
 
 export const Options = styled.View`
