@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { synchronize } from "@nozbe/watermelondb/sync";
-import { CarDTO } from "../../dtos/CarDTO";
 import { database } from "../../database";
 import { Car as ModelCar } from "../../database/models/Car";
 

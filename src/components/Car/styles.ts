@@ -1,6 +1,7 @@
 import { RectButton } from "react-native-gesture-handler";
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
+import FastImage from "react-native-fast-image";
 
 export const Container = styled(RectButton)`
   width: 100%;
@@ -63,10 +64,7 @@ export const Type = styled.View`
   margin-left: 30px;
 `;
 
-export const CarImage = styled.Image`
+export const CarImage = styled(FastImage)`
   width: ${RFValue(167)}px;
   height: ${RFValue(85)}px;
 `;
-function ReactButton(ReactButton: any) {
-  throw new Error("Function not implemented.");
-}
